@@ -18,16 +18,21 @@
     
     NSInteger countTab;
     
+    float addTen ;
+    
+    NSURL *btn;
     
 
 }
 //propartes
+@property (strong, nonatomic) IBOutlet UIButton *CloseHistory;
 
 @property (strong, nonatomic) IBOutlet UITextField *urlTextBar;
 
 @property (strong, nonatomic) IBOutlet UIWebView *webView;
 
 //methods
+- (IBAction)CloseHistory:(id)sender;
 
 - (IBAction)goButton:(id)sender;
 
@@ -40,5 +45,10 @@
 - (IBAction)addToFavorites:(id)sender;
 
 - (IBAction)openFavorites:(id)sender;
+
+@property (strong, nonatomic) IBOutlet UIScrollView *historyScroll;
+
+//@property (strong, nonatomic) IBOutlet UITableView *historyTable;
+
 
 @end

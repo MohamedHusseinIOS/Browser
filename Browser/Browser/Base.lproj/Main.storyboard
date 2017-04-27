@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -72,9 +73,8 @@
                                     </barButtonItem>
                                 </items>
                             </toolbar>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="beo-HJ-tXg" userLabel="footer">
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="beo-HJ-tXg" userLabel="footer">
                                 <rect key="frame" x="-1" y="692" width="414" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <color key="backgroundColor" red="0.20518955589999999" green="0.59525579210000001" blue="0.85967093709999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <items>
                                     <barButtonItem style="plain" id="26I-U7-wpA">
@@ -112,21 +112,55 @@
                                     </barButtonItem>
                                 </items>
                             </toolbar>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" canCancelContentTouches="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oZc-GT-RXm">
+                                <rect key="frame" x="20" y="402" width="370" height="269"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JmU-zT-w1c">
+                                        <rect key="frame" x="8" y="8" width="352" height="30"/>
+                                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="352" id="AvF-bP-Cs2"/>
+                                        </constraints>
+                                        <state key="normal" title="Close">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="CloseHistory:" destination="BYZ-38-t0r" eventType="touchUpInside" id="qyw-6L-kjy"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.76907199621200562" green="0.89828360080718994" blue="0.96891254186630249" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="JmU-zT-w1c" secondAttribute="bottom" constant="231" id="GIy-Ag-hya"/>
+                                    <constraint firstItem="JmU-zT-w1c" firstAttribute="leading" secondItem="oZc-GT-RXm" secondAttribute="leadingMargin" id="Rrf-st-RoM"/>
+                                    <constraint firstAttribute="trailing" secondItem="JmU-zT-w1c" secondAttribute="trailing" constant="10" id="UTx-84-ZNu"/>
+                                    <constraint firstItem="JmU-zT-w1c" firstAttribute="top" secondItem="oZc-GT-RXm" secondAttribute="topMargin" id="bQe-hn-B80"/>
+                                </constraints>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="ci6-5m-bk5" firstAttribute="top" secondItem="bym-rJ-jvZ" secondAttribute="bottom" id="0Bd-N0-iAw"/>
+                            <constraint firstItem="oZc-GT-RXm" firstAttribute="leading" secondItem="TKx-Fh-S0p" secondAttribute="leadingMargin" id="11m-16-Dht"/>
                             <constraint firstItem="ye0-nU-3Ia" firstAttribute="top" secondItem="3ZH-w1-hYN" secondAttribute="bottom" id="1fM-Zj-89O"/>
+                            <constraint firstItem="beo-HJ-tXg" firstAttribute="leading" secondItem="TKx-Fh-S0p" secondAttribute="leadingMargin" constant="-21" id="5Fl-cy-7Ed"/>
+                            <constraint firstItem="oZc-GT-RXm" firstAttribute="top" secondItem="TKx-Fh-S0p" secondAttribute="top" constant="402" id="6bI-aF-TXu"/>
                             <constraint firstAttribute="trailing" secondItem="bym-rJ-jvZ" secondAttribute="trailing" id="7YT-Fg-prR"/>
                             <constraint firstItem="bym-rJ-jvZ" firstAttribute="leading" secondItem="TKx-Fh-S0p" secondAttribute="leading" id="Mnc-8h-tYB"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="oZc-GT-RXm" secondAttribute="trailing" constant="4" id="PFH-ka-JR1"/>
                             <constraint firstItem="bym-rJ-jvZ" firstAttribute="centerX" secondItem="TKx-Fh-S0p" secondAttribute="centerX" id="Sxz-3W-bAo"/>
+                            <constraint firstItem="beo-HJ-tXg" firstAttribute="top" secondItem="oZc-GT-RXm" secondAttribute="bottom" constant="21" id="Wwo-qk-aej"/>
+                            <constraint firstItem="beo-HJ-tXg" firstAttribute="bottom" secondItem="ci6-5m-bk5" secondAttribute="top" id="aVH-NT-rUc"/>
                             <constraint firstItem="ye0-nU-3Ia" firstAttribute="trailing" secondItem="bym-rJ-jvZ" secondAttribute="trailing" id="g56-fn-iha"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="beo-HJ-tXg" secondAttribute="trailing" constant="-19" id="j3a-Cz-A1i"/>
                             <constraint firstItem="ye0-nU-3Ia" firstAttribute="centerX" secondItem="bym-rJ-jvZ" secondAttribute="centerX" id="mAz-4L-9ZR"/>
                             <constraint firstItem="ye0-nU-3Ia" firstAttribute="width" secondItem="bym-rJ-jvZ" secondAttribute="width" id="oDE-bp-MQi"/>
                             <constraint firstItem="bym-rJ-jvZ" firstAttribute="top" secondItem="TKx-Fh-S0p" secondAttribute="top" constant="64" id="qck-FW-MOC"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="CloseHistory" destination="JmU-zT-w1c" id="UGV-Cc-QTE"/>
+                        <outlet property="historyScroll" destination="oZc-GT-RXm" id="0qk-TU-1i9"/>
                         <outlet property="urlTextBar" destination="Bfa-lJ-EQj" id="aJf-iF-Ru0"/>
                         <outlet property="webView" destination="bym-rJ-jvZ" id="XrP-Ey-iaY"/>
                     </connections>

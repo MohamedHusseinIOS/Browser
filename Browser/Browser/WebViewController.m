@@ -15,17 +15,32 @@
 
 @implementation WebViewController
 
+//hide and show Methods for HistoryTable
+
+-(void) hideHistory{
+    _historyScroll.hidden = YES;
+}
+
+-(void) showHistory{
+    _historyScroll.hidden = NO;
+}
+//----------------------
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
+    self.historyScroll.layer.cornerRadius = 20;
+    self.historyScroll.layer.shadowOpacity = 0.8;
+    //self.historyTable.layer.cornerRadius = 20;
+    self.CloseHistory.layer.cornerRadius = 20;
+    addTen = 0;
 }
-
+//--------------------
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+//---------------------
 -(void) urlRequest{ //this method read the url from the text view and open it in the web view.
 
     urlText = [_urlTextBar text];
@@ -37,8 +52,11 @@
     [_webView loadRequest:request];
     
 }
-
+//-------------------
 -(void)viewDidAppear:(BOOL)animated{
+    
+    
+    [self hideHistory];
     
     [_webView setDelegate:self]; // to make the delegated methods impleminted
     
@@ -56,9 +74,16 @@
 
     tabCount =0;
     
+    [self.historyScroll setScrollEnabled:YES];
+    [self.historyScroll setShowsVerticalScrollIndicator:YES];
+    [self.historyScroll setShowsHorizontalScrollIndicator:YES];
+    [self.historyScroll setBounces:NO];
+    self.historyScroll.contentSize = CGSizeMake(400, 1000);
+    
+    
     
 }
-
+//-------------------------
 //delegated methods form UIWebViewDelegate
 //start
 -(void)webViewDidStartLoad:(UIWebView *)webView{
@@ -83,7 +108,11 @@
     // Pass the selected object to the new view controller.
 }
 */
-
+//-----------------------
+- (IBAction)CloseHistory:(id)sender {
+    _historyScroll.hidden=YES;
+}
+//--------------------
 - (IBAction)goButton:(id)sender {
     
     if ([[_urlTextBar text ]  isEqual: @""]) {
@@ -109,7 +138,7 @@
         countTab= tabCount; // to save count on var and edit it in the below code for back and forward Buttons.
     }
 }
-
+//-------------------
 - (IBAction)forwardButton:(id)sender {
     
     if (countTab == ([urlArray count]-1) || countTab > ([urlArray count]-1) ){
@@ -126,7 +155,7 @@
     
     }
 }
-
+//-----------------
 - (IBAction)backButton:(id)sender {
     
     if (countTab == 1) {
@@ -158,16 +187,88 @@
         [self urlRequest];
     }
 }
+//-------------------
 
+-(void) addButtonsByArray:(NSInteger)index{
+    
+    addTen = addTen +50;
+    
+    btn=[NSURL URLWithString:[urlArray objectAtIndex:index]];
+    
+    
+ //   NSURL *urls = [NSURL URLWithString:[urlArray objectAtIndex:index]];
+    
+//    NSURLRequest *req = [NSURLRequest requestWithURL:urls];
+    
+    
+    UILabel *labelUrl = [UILabel new];
+    
+    labelUrl.frame = CGRectMake(8, 0+addTen, 350, 30);
+    labelUrl.backgroundColor = [UIColor whiteColor];
+    labelUrl.textColor = [UIColor blueColor];
+    
+    [labelUrl setText:[urlArray objectAtIndex:index]];
+    
+    
+    [self.historyScroll addSubview:labelUrl];
+    
+    
+    
+//    btn.layer.cornerRadius = 10;
+//    btn.frame = CGRectMake(8, 0+addTen, 352, 30);
+//    btn.backgroundColor = [UIColor blueColor];
+//    
+//    [btn setTag:index];
+//    
+//    [btn setTitle:[urlArray objectAtIndex:index] forState:UIControlStateNormal ];
+//    [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+//    
+//    [btn addTarget:self action:@selector(callHistoryMember:) forControlEvents:UIControlEventTouchUpInside];
+//    
+//    [self.historyScroll addSubview:btn];
+    
+    
+    
+    
+}
+
+/*//------------its method to make buttons in history work but i feild to connect it with buttons -----------
+
+-(void) callHistoryMember:(UIButton*)Sender{
+    
+    NSString *urls = [urlArray objectAtIndex:[btn tag]];
+    
+    NSURL *url = [NSURL URLWithString:urls];
+    
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    
+    [_webView loadRequest:request];
+}
+
+
+----------------------*/
 - (IBAction)History:(id)sender {
     
     
-}
+    for (NSUInteger i=0; i < [urlArray count]; i++) {
+        
+       [self addButtonsByArray:i];
+        
+    }
 
+    [self showHistory];
+}
+//-------------
 - (IBAction)addToFavorites:(id)sender {
+    
+    
+    
 }
-
+//--------------
 - (IBAction)openFavorites:(id)sender {
-}
 
+    
+
+}
+//------------
 @end
